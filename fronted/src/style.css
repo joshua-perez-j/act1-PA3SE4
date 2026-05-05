@@ -1,0 +1,205 @@
+:root {
+    --bg-black: #050505;
+    --accent-yellow: #f1c40f;
+    --deep-gray: #121212; 
+    --text-main: #ffffff;
+    --error-red: #e74c3c;
+    --success-green: #2ecc71; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-black);
+    color: var(--text-main);
+    font-family: 'Consolas', 'Courier New', monospace; 
+    overflow: hidden; 
+}
+
+.main-container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    height: 70px;
+    background-color: var(--deep-gray);
+    border-bottom: 2px solid var(--accent-yellow);
+    display: flex;
+    align-items: center;
+    padding: 0 40px; 
+    z-index: 10;
+}
+
+.logo {
+    color: var(--accent-yellow);
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.welcome-portal {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    padding-left: 40px; 
+    background: radial-gradient(circle at 10% 50%, #080800 0%, #000000 100%);
+}
+
+.title {
+    font-size: 4rem;
+    color: var(--accent-yellow);
+    line-height: 1;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    color: #666;
+    margin-bottom: 30px;
+    font-size: 1.1rem;
+    border-left: 3px solid var(--accent-yellow);
+    padding-left: 15px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin-bottom: 30px;
+    max-width: 400px;
+}
+
+.input-field {
+    background: #111;
+    border: 1px solid #333;
+    padding: 15px;
+    color: var(--text-main);
+    font-family: 'Consolas', monospace;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.input-field:focus {
+    border-color: var(--accent-yellow);
+    box-shadow: 0 0 10px rgba(241, 196, 15, 0.2);
+}
+
+.input-field::placeholder {
+    color: #444;
+}
+
+.actions {
+    display: flex;
+    gap: 15px;
+}
+
+.primary-btn {
+    background: var(--accent-yellow);
+    color: var(--bg-black);
+    border: none;
+    padding: 15px 40px;
+    font-weight: bold;
+    font-family: 'Consolas', monospace;
+    cursor: pointer;
+    transition: transform 0.1s, filter 0.2s;
+    text-transform: uppercase;
+}
+
+.primary-btn:hover {
+    filter: brightness(1.1);
+}
+
+.primary-btn:active {
+    transform: scale(0.98);
+}
+
+.secondary-btn {
+    background: transparent;
+    border: 1px solid var(--accent-yellow);
+    color: var(--accent-yellow);
+    padding: 15px 40px;
+    font-weight: bold;
+    font-family: 'Consolas', monospace;
+    cursor: pointer;
+    transition: background 0.3s, color 0.3s;
+    text-transform: uppercase;
+}
+
+.secondary-btn:hover {
+    background: var(--accent-yellow);
+    color: var(--bg-black);
+}
+
+.content {
+    animation: fadeIn 0.8s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateX(-20px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 600px) {
+    .title { font-size: 2.5rem; }
+    .welcome-portal { padding-left: 20px; }
+    .actions { flex-direction: column; }
+}
+
+
+.status-message {
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 12px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid transparent;
+    text-transform: uppercase;
+    animation: fadeIn 0.3s ease-out;
+}
+
+.status-error {
+    color: var(--error-red);
+    border-color: var(--error-red);
+    box-shadow: 0 0 8px rgba(231, 76, 60, 0.2);
+}
+
+.status-success {
+    color: var(--success-green);
+    border-color: var(--success-green);
+    box-shadow: 0 0 8px rgba(46, 204, 113, 0.2);
+}
+
+.input-field:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #0a0a0a;
+}
+
+.primary-btn:disabled, 
+.secondary-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none; 
+}
+
+.primary-btn:disabled:hover, 
+.secondary-btn:disabled:hover {
+    filter: none;
+    background: var(--accent-yellow); 
+    color: var(--bg-black);
+}
+
+.secondary-btn:disabled:hover {
+    background: transparent;
+    color: var(--accent-yellow);
+}
