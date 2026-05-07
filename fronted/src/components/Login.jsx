@@ -30,7 +30,7 @@ const Login = () => {
             
             setTimeout(() => {
                 navigate('/welcome');
-            }, 1000);
+            }, 300);
             
         } catch (err) {
             setStatusMsg({ text: `ACCESO DENEGADO: ${err.message}`, isError: true });

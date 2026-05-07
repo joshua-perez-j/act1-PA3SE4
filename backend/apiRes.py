@@ -31,6 +31,29 @@ class UserCredentials(BaseModel):
     nombre: str
     contrasena: str
 
+# Modelos Pydantic para los nuevos módulos
+class Producto(BaseModel):
+    nombre: str
+    precio: float
+    cantidad: int
+
+class Venta(BaseModel):
+    producto: str
+    monto: float
+    fecha: str
+
+class Proveedor(BaseModel):
+    nombre: str
+    contacto: str
+    empresa: str
+
+# ALMACENAMIENTO EN MEMORIA (Inseguro y volátil)
+db_memoria = {
+    "productos": [],
+    "ventas": [],
+    "proveedores": []
+}
+
 @app.post("/createUser")
 def create_user(user: UserCredentials):
     conn = get_db_connection()
@@ -73,6 +96,38 @@ def login(user: UserCredentials):
     finally:
         cursor.close()
         conn.close()
+
+# --- NUEVOS ENDPOINTS ---
+
+# Endpoints de Productos
+@app.get("/productos")
+def get_productos():
+    return db_memoria["productos"]
+
+@app.post("/productos")
+def add_producto(item: Producto):
+    db_memoria["productos"].append(item.dict())
+    return {"status": "success", "data": item}
+
+# Endpoints de Ventas
+@app.get("/ventas")
+def get_ventas():
+    return db_memoria["ventas"]
+
+@app.post("/ventas")
+def add_venta(item: Venta):
+    db_memoria["ventas"].append(item.dict())
+    return {"status": "success", "data": item}
+
+# Endpoints de Proveedores
+@app.get("/proveedores")
+def get_proveedores():
+    return db_memoria["proveedores"]
+
+@app.post("/proveedores")
+def add_proveedor(item: Proveedor):
+    db_memoria["proveedores"].append(item.dict())
+    return {"status": "success", "data": item}
 
 if __name__ == "__main__":
     import uvicorn
